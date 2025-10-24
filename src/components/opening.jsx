@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import landRoverLogo from "../assets/landrover.png";
 import engineSound from "../assets/engine.mp3";
 
 export default function OpeningPage() {
   const [started, setStarted] = useState(false);
+  const navigate = useNavigate();
 
   const handleStart = () => {
     if (!started) {
@@ -12,13 +14,18 @@ export default function OpeningPage() {
       // Play engine sound
       const audio = new Audio(engineSound);
       audio.play().catch(() => console.log("Autoplay blocked"));
-
-      // Navigate to landing page after 4 seconds
-      setTimeout(() => {
-        window.location.href = "/landing";
-      }, 4000);
     }
   };
+
+  // Navigate after animation finishes
+  useEffect(() => {
+    if (started) {
+      const timer = setTimeout(() => {
+        navigate("/landing");
+      }, 1000); // 1 second for fade-out animation
+      return () => clearTimeout(timer);
+    }
+  }, [started, navigate]);
 
   return (
     <div
