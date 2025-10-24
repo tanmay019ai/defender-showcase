@@ -22,7 +22,7 @@ export default function OpeningPage() {
     if (started) {
       const timer = setTimeout(() => {
         navigate("/landing");
-      }, 1000); // 1 second for fade-out animation
+      }, 800); // short delay for fade animation
       return () => clearTimeout(timer);
     }
   }, [started, navigate]);
@@ -32,16 +32,14 @@ export default function OpeningPage() {
       className="relative w-full h-screen bg-black flex items-center justify-center overflow-hidden cursor-pointer"
       onClick={handleStart}
     >
-      {/* Land Rover logo */}
       <img
         src={landRoverLogo}
         alt="Land Rover"
-        className={`w-64 md:w-96 transition-all duration-1000 ${
+        className={`w-64 md:w-96 transition-all duration-700 ${
           started ? "scale-0 opacity-0" : "scale-100 opacity-100 animate-pulse"
         }`}
       />
 
-      {/* Blinking "Click anywhere to start" */}
       {!started && (
         <div className="absolute bottom-20 text-center text-white text-xl md:text-3xl font-bold animate-bounce">
           Click anywhere to start
