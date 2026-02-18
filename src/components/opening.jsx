@@ -32,17 +32,28 @@ export default function OpeningPage() {
       className="relative w-full h-screen bg-black flex items-center justify-center overflow-hidden cursor-pointer"
       onClick={handleStart}
     >
+      {/* Subtle premium background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-neutral-950 to-black" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(34,197,94,0.10),transparent_55%)]" />
+
       <img
         src={landRoverLogo}
         alt="Land Rover"
-        className={`w-64 md:w-96 transition-all duration-700 ${
-          started ? "scale-0 opacity-0" : "scale-100 opacity-100 animate-pulse"
+        className={`relative z-10 w-64 md:w-96 transition-all duration-700 ease-out ${
+          started ? "scale-95 opacity-0" : "scale-100 opacity-100"
         }`}
       />
 
       {!started && (
-        <div className="absolute bottom-20 text-center text-white text-xl md:text-3xl font-bold animate-bounce">
-          Click anywhere to start
+        <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-10">
+          <div className="px-5 py-2 rounded-full border border-white/15 bg-white/5 backdrop-blur text-center">
+            <div className="text-sm md:text-base font-semibold tracking-wide">
+              Click anywhere to start
+            </div>
+            <div className="text-xs md:text-sm text-white/60 mt-0.5">
+              Audio may be blocked by your browser
+            </div>
+          </div>
         </div>
       )}
     </div>

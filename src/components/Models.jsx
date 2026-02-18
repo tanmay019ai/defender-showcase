@@ -1,4 +1,3 @@
-"use client";
 import React, { Suspense, useRef, useLayoutEffect, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useGLTF, Environment, Html } from "@react-three/drei";
@@ -52,13 +51,34 @@ export default function Models() {
 
   return (
     <section className="relative w-full h-screen bg-black overflow-hidden">
+      {/* UI Overlay */}
+      <div className="absolute inset-x-0 top-0 z-10">
+        <div className="mx-auto max-w-6xl px-6 pt-6">
+          <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 backdrop-blur px-4 py-2">
+            <div className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-white/80">
+              Defender 3D
+            </div>
+            <div className="h-4 w-px bg-white/15" />
+            <div className="text-xs sm:text-sm text-white/60">Drag to rotate</div>
+          </div>
+        </div>
+      </div>
+
       <Canvas camera={{ position: cameraPos, fov: 50 }}>
         {/* Lighting */}
         <ambientLight intensity={0.6} />
         <directionalLight position={[5, 10, 5]} intensity={1.4} />
 
         {/* 3D Defender Model */}
-        <Suspense fallback={<Html center>Loading...</Html>}>
+        <Suspense
+          fallback={
+            <Html center>
+              <div className="rounded-full border border-white/10 bg-black/60 px-4 py-2 text-sm text-white/80 backdrop-blur">
+                Loading model…
+              </div>
+            </Html>
+          }
+        >
           <DefenderModel url="/defender.glb" scale={scale} />
         </Suspense>
 

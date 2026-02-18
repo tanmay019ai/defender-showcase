@@ -1,1 +1,24 @@
 @import "tailwindcss";
+
+@layer base {
+	:root {
+		color-scheme: dark;
+	}
+
+	html {
+		@apply h-full scroll-smooth;
+	}
+
+	body {
+		@apply h-full bg-black text-white antialiased;
+		@apply selection:bg-green-500/25 selection:text-white;
+	}
+
+	#root {
+		@apply h-full;
+	}
+
+	a {
+		@apply text-inherit;
+	}
+}
