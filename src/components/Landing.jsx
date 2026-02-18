@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import Models from "./Models";
-import landRoverLogo from "../assets/landrover.png";
+import TopNav from "./TopNav";
 
 export default function Landing() {
   const modelsRef = useRef(null);
@@ -17,13 +17,8 @@ export default function Landing() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(34,197,94,0.12),transparent_55%)]" />
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-40 bg-green-500/10 blur-3xl rounded-full" />
 
-        {/* Header */}
-        <header className="absolute top-0 left-0 right-0 z-20">
-          <div className="mx-auto max-w-6xl px-6 py-5 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <img src={landRoverLogo} alt="Land Rover" className="h-8 w-auto opacity-90" />
-              <div className="text-sm tracking-[0.22em] uppercase text-white/70">Defender Showcase</div>
-            </div>
+        <TopNav
+          rightSlot={
             <button
               type="button"
               onClick={handleScrollToModels}
@@ -32,8 +27,8 @@ export default function Landing() {
               Explore
               <span className="text-white/50">↓</span>
             </button>
-          </div>
-        </header>
+          }
+        />
 
         {/* Overlay Content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10">
